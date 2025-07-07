@@ -1,0 +1,19 @@
+server:
+  port: 8090  # 🔌 Puerto en el que se ejecutará el servidor Eureka (localhost:8090)
+
+eureka:
+  instance:
+    hostname: localhost  # 🌐 Nombre del host donde corre Eureka. Generalmente "localhost" en entorno local.
+
+  client:
+    registerWithEureka: false  # ❌ Este servicio NO se registrará a sí mismo como cliente en Eureka.
+    # Esto es correcto porque este microservicio es el **servidor Eureka**, no un cliente.
+
+    fetchRegistry: false       # ❌ No necesita obtener el registro de otros servicios porque
+    # como servidor Eureka, él **almacena** el registro, no lo consulta.
+
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+        # 🔁 URL base donde los microservicios clientes se registrarán.
+        # Está compuesta dinámicamente: http://localhost:8090/eureka/
+      # Esta es la dirección donde otros servicios encontrarán a Eureka.
