@@ -1,0 +1,76 @@
+<body class="text-gray-700 bg-white antialiased" style="font-family: 'Roboto', sans-serif">
+
+<!-- Nav -->
+<nav class="flex items-center justify-between p-6 bg-white shadow">
+  <div class="text-xl font-semibold text-gray-800">
+    <a routerLink="/" class="hover:text-green-800">CODELIBROS TIENDA</a>
+  </div>
+  <div class="lg:hidden">
+    <button id="nav-toggle" class="focus:outline-none">
+      <svg class="h-6 w-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+  <div id="nav-content" class="hidden lg:flex space-x-6">
+    <a routerLink="/inicio" routerLinkActive="text-teal-600" class="hover:text-teal-600">Inicio</a>
+    <a routerLink="/tienda" routerLinkActive="text-teal-600" class="hover:text-teal-600">Tienda</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="hero" class="relative h-screen bg-cover bg-center"
+         style="background-image: url('assets/ImagenInicio.jpg')">
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+  <div class="container mx-auto h-full flex flex-col justify-center items-center text-center px-6">
+    <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+      La mejor tienda online para comprar libros!
+    </h1>
+    <p class="text-xl md:text-2xl text-gray-200 mb-8">
+      Encuentra tus títulos favoritos en un solo lugar
+    </p>
+    <button
+      routerLink="/tienda"
+      class="bg-white text-gray-800 font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wide
+               transform hover:scale-105 transition-transform duration-300">
+      Explorar librería Online
+    </button>
+  </div>
+</section>
+
+<!-- Productos → ancla “Tienda” -->
+<section id="tienda" class="container mx-auto px-6 py-12">
+  <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Nuestros Libros</h2>
+  <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    <div *ngFor="let libro of libros" class="border rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow">
+      <img [src]="getImageUrl(libro.imagenUrl)" alt="{{libro.titulo}}"
+           class="w-full h-60 object-contain p-4 bg-white rounded-lg shadow-md">
+      <div class="p-4 text-center">
+        <h3 class="text-xl font-semibold mb-2">{{ libro.titulo }}</h3>
+        <p class="text-gray-600 mb-1">{{ libro.autor }}</p>
+        <p class="text-gray-800 font-bold text-lg">S/ {{ libro.precio }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Script para toggle de menú y smooth scroll -->
+<script>
+  // Toggle móvil
+  document.getElementById('nav-toggle').addEventListener('click', () => {
+    const menu = document.getElementById('nav-content');
+    menu.classList.toggle('hidden');
+  });
+
+  // Smooth scroll para anclas
+  document.querySelectorAll('a[routerLink="/tienda"], button[routerLink="/tienda"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('tienda').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+

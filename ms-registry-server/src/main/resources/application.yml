@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: ms-registry-service  #  Nombre del microservicio. Es usado por Spring Cloud para identificar este servicio
+    # en el Config Server (por ejemplo buscará "ms-registry-service-development.yml").
+
+  profiles:
+    active: development        # Perfil activo: indica que se usará la configuración con el perfil "development".
+      # Entonces buscará el archivo remoto "ms-registry-service-development.yml"
+    # dentro del repositorio config-data.
+
+  config:
+    import: optional:configserver:http://root:123456@localhost:7070
+      # 🔗 Se importa configuración externa desde el Config Server (localhost:7070).
+      # La palabra "optional:" evita que el proyecto falle si el servidor de configuración
+      # no está disponible al arrancar.
+    # Se incluye autenticación básica (usuario: root, contraseña: 123456).
