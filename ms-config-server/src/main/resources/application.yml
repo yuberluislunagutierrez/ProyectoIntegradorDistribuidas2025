@@ -9,7 +9,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Alexjhona/ProyectoIntegradorDistribuidas2025.git  # Esta es la URL del repositorio en GitHub donde guardamos las configuraciones.
+          uri: https://github.com/yuberluislunagutierrez/ProyectoIntegradorDistribuidas2025.git # Esta es la URL del repositorio en GitHub donde guardamos las configuraciones.
           searchPaths: config-data  # Dentro de ese repositorio, buscamos la carpeta "config-data" que tiene las configuraciones.
           default-label: main  # El "master" es como el nombre de la rama donde guardamos las configuraciones principales.
 
